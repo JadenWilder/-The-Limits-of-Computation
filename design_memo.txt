@@ -1,0 +1,11 @@
+Assignment 6: Making the Impossible Possible — Design Memo
+
+**Recursive Analysis**
+
+The naive recursive algorithm calculates the Longest Common Subsequence (LCS) by comparing the last characters of two sequences. If the characters match, it adds one to the result and recursively examines the remaining characters. If they do not match, it calculates both possible subproblems and chooses the larger result. Although this approach is straightforward, it repeats many calculations. Its worst-case time complexity is exponential, making it inefficient for large DNA sequences. In my tests, the recursive algorithm was limited to sequences of length 10 to avoid excessive execution time.
+
+**Dynamic Programming Comparison**
+
+I implemented two dynamic programming approaches: top-down memoization and bottom-up tabulation. Memoization stores previously calculated subproblem results in a dictionary so that each state is calculated only once. I used an explicit stack to avoid Python's recursion-depth limit while preserving memoized subproblem calculations. Tabulation builds a two-dimensional table iteratively, using previously calculated values to determine the LCS length. Both approaches have O(m × n) time and space complexity, where m and n are the lengths of the two sequences.
+
+The experimental results showed that tabulation was faster than memoization for every tested dataset. For sequences of length 10, tabulation took approximately 0.000018 seconds, compared with 0.000055 seconds for memoization. At length 1000, tabulation took approximately 0.143626 seconds, while memoization took approximately 0.472469 seconds. Both dynamic programming algorithms returned matching LCS results across all seven dataset sizes. These results demonstrate that dynamic programming makes the LCS problem practical for much larger sequences than naive recursion can efficiently handle. Tabulation was the fastest approach in my experiments, while memoization offered a top-down alternative that avoids repeated calculations.
